@@ -1,15 +1,15 @@
 {
-  "name": "webpack-template",
+  "name": "weather-app",
   "version": "1.0.0",
-  "description": "This is a template for myself to use in other webpack projects that I do so that I don't have to configure it much.",
+  "description": "This is a Weather App using the Virtual Crossing API .",
   "keywords": [],
-  "homepage": "https://github.com/TanishKhatri/Webpack-Template#readme",
+  "homepage": "https://github.com/TanishKhatri/Weather-App#readme",
   "bugs": {
-    "url": "https://github.com/TanishKhatri/Webpack-Template/issues"
+    "url": "https://github.com/TanishKhatri/Weather-App/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/TanishKhatri/Webpack-Template.git"
+    "url": "git+https://github.com/TanishKhatri/Weather-App.git"
   },
   "license": "ISC",
   "author": "",
