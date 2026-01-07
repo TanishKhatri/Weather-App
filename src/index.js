@@ -12,5 +12,3 @@ async function getWeatherObject(chosenCity) {
     console.log(error);
   }
 }
-
-getWeatherObject("delhi").then((result) => {console.log(result)});
