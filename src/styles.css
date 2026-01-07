@@ -1,3 +1,143 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 body {
-  background-color: burlywood;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+  background-image: url(assets/Landscape-Background-Transparent.png);
+  background-size: cover;
+  background-position: bottom;
+  padding: 0;
+  font-family: 'Roboto';
+}
+
+.searchContainer {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-start;
+  margin: 20px;
+}
+
+#searchInput {
+  background-color: rgb(210, 210, 210);
+  border: none;
+  text-align: center;
+  border-radius: 10px;
+  border: 1px solid black;
+  width: 350px;
+}
+
+#searchInput::placeholder {
+  color: rgb(87, 87, 87);
+}
+
+.searchButton {
+  border: 2px solid black;
+  border-radius: 10px;
+  padding: 5px 15px;
+  background-color: rgb(255, 202, 30);
+  cursor: pointer;
+}
+
+.searchButton:hover {
+  background-color: rgb(204, 157, 1);
+}
+
+.projectContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+}
+
+.weatherDiv {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+}
+
+.chosenDayInfo {
+  display: flex;
+  flex-direction: column;
+  width: 800px;
+  border-radius: 30px;
+  background-color: white;
+  padding: 25px;
+  gap: 20px;
+}
+
+.dayAndIcon {
+  display: flex;
+  justify-content: space-between;
+}
+
+.weatherImage {
+  width: 120px;
+  height: auto;
+}
+
+.dateAndDay {
+  font-size: 1.5rem;
+}
+
+.chosenDayMetrics {
+  display: flex;
+  gap: 20px;
+  align-self: center;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.chosenDayMetricContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 2fr;
+  align-items: center;
+  row-gap: 5px;
+}
+
+.chosenDayMetricContainer.Wind {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 2fr;
+}
+
+.chosenDayMetricContainer.Wind .metricTitle {
+  grid-column: 1 / 4;
+}
+
+.metricTitle {
+  grid-column: 1 / 3;
+  font-weight: bold;
+  justify-self: center;
+}
+
+.windDirectionContainer {
+  margin-left: 10px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.temperatureIcon {
+  width: 40px;
+  height: auto;
+}
+
+.droplet, .umbrella, .windIcon {
+  width: 30px;
+  height: auto;
+}
+
+.arrow {
+  width: 20px;
+  height: auto;
+}
+
+.metric {
+  font-size: 1.2rem;
 }

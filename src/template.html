@@ -1,81 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Weather-App</title>
-</head>
-<body>
-  <div class="projectContainer">
-    <div class="searchContainer">
-      <input type="search" autocorrect="off" autocomplete="off" class="searchInput" id="searchInput" placeholder="Search Here">
-      <button class="searchButton">Search</button>
-      <div class="loadingIcon"></div>
-    </div>
-    <div class="weatherDiv">
-      <div class="chosenDayInfo">
-        <div class="dayAndIcon">
-          <div class="chosenDayDate"></div>
-          <div class="chosenDayIcon"></div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather-App</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div class="projectContainer">
+      <div class="searchContainer">
+        <input
+          type="search"
+          autocorrect="off"
+          autocomplete="off"
+          class="searchInput"
+          id="searchInput"
+          placeholder="Search Your City"
+        />
+        <button class="searchButton">Search</button>
+        <div class="loadingIcon"></div>
+      </div>
+      <div class="weatherDiv">
+        <div class="chosenDayInfo">
+          <div class="dayAndIcon">
+            <div class="chosenDayDate">
+              <h1 class="dateAndDay">
+                27<sup>th</sup> January 2026, Wednesday
+              </h1>
+              <div class="dayDescription">Clear Sky</div>
+            </div>
+            <div class="chosenDayIcon">
+              <img
+                class="weatherImage"
+                src="assets/WeatherIcons/SVG/4th Set - Color/partly-cloudy-day.svg"
+              />
+            </div>
+          </div>
+          <div class="chosenDayMetrics">
+            <div class="chosenDayMetricContainer">
+              <p class="metricTitle">Temperature</p>
+              <div class="metricIconContainer"><img class="temperatureIcon" src="assets/metricIcons/temperature-half-svgrepo-com.svg"></div>
+              <div class="metric">16&deg;C</div>
+            </div>
+            <div class="chosenDayMetricContainer">
+              <p class="metricTitle">Humidity</p>
+              <div class="metricIconContainer"><img src="assets/metricIcons/drop-svgrepo-com.svg" alt="" class="droplet"></div>
+              <div class="metric">12.5%</div>
+            </div>
+            <div class="chosenDayMetricContainer">
+              <p class="metricTitle">Precipitation</p>
+              <div class="metricIconContainer"><img src="assets/metricIcons/umbrella-svgrepo-com.svg" alt="" class="umbrella"></div>
+              <div class="metric">13.5%</div>
+            </div>
+            <div class="chosenDayMetricContainer Wind">
+              <p class="metricTitle">Wind Speed</p>
+              <div class="metricIconContainer"><img src="assets/metricIcons/wind-svgrepo-com.svg" alt="" class="windIcon"></div>
+              <div class="metric">3m/s</div>
+              <div class="windDirectionContainer">
+                <p class="windDirection">SW</p>
+                <div class="windDirectionIcon"><img src="assets/metricIcons/arrow-narrow-up-svgrepo-com.svg" alt="" class="arrow"></div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="chosenDayMetrics">
-          <div class="chosenDayTemperature"></div>
-          <div class="chosenDayHumidity"></div>
-          <div class="chosenDayPrecipitation"></div>
-          <div class="chosenDayWindSpeed"></div>
+        <div class="dayTimeline">
+          <div class="timelineDiv">
+            <div class="timelineInfoContainer">
+              <div class="timelineTemp"></div>
+              <div class="humidity"></div>
+            </div>
+            <div class="icon"></div>
+          </div>
+          <div class="timelineDiv">
+            <div class="timelineInfoContainer">
+              <div class="timelineTemp"></div>
+              <div class="humidity"></div>
+            </div>
+            <div class="icon"></div>
+          </div>
+          <div class="timelineDiv">
+            <div class="timelineInfoContainer">
+              <div class="timelineTemp"></div>
+              <div class="humidity"></div>
+            </div>
+            <div class="icon"></div>
+          </div>
+          <div class="timelineDiv">
+            <div class="timelineInfoContainer">
+              <div class="timelineTemp"></div>
+              <div class="humidity"></div>
+            </div>
+            <div class="icon"></div>
+          </div>
+          <div class="timelineDiv">
+            <div class="timelineInfoContainer">
+              <div class="timelineTemp"></div>
+              <div class="humidity"></div>
+            </div>
+            <div class="icon"></div>
+          </div>
+          <div class="timelineDiv">
+            <div class="timelineInfoContainer">
+              <div class="timelineTemp"></div>
+              <div class="humidity"></div>
+            </div>
+            <div class="icon"></div>
+          </div>
+          <div class="timelineDiv">
+            <div class="timelineInfoContainer">
+              <div class="timelineTemp"></div>
+              <div class="humidity"></div>
+            </div>
+            <div class="icon"></div>
+          </div>
         </div>
       </div>
-      <div class="dayTimeline">
-        <div class="timelineDiv">
-          <div class="timelineInfoContainer">
-            <div class="timelineTemp"></div>
-            <div class="humidity"></div>
-          </div>
-          <div class="icon"></div>
-        </div>
-        <div class="timelineDiv">
-          <div class="timelineInfoContainer">
-            <div class="timelineTemp"></div>
-            <div class="humidity"></div>
-          </div>
-          <div class="icon"></div>
-        </div>
-        <div class="timelineDiv">
-          <div class="timelineInfoContainer">
-            <div class="timelineTemp"></div>
-            <div class="humidity"></div>
-          </div>
-          <div class="icon"></div>
-        </div>
-        <div class="timelineDiv">
-          <div class="timelineInfoContainer">
-            <div class="timelineTemp"></div>
-            <div class="humidity"></div>
-          </div>
-          <div class="icon"></div>
-        </div>
-        <div class="timelineDiv">
-          <div class="timelineInfoContainer">
-            <div class="timelineTemp"></div>
-            <div class="humidity"></div>
-          </div>
-          <div class="icon"></div>
-        </div>
-        <div class="timelineDiv">
-          <div class="timelineInfoContainer">
-            <div class="timelineTemp"></div>
-            <div class="humidity"></div>
-          </div>
-          <div class="icon"></div>
-        </div>
-        <div class="timelineDiv">
-          <div class="timelineInfoContainer">
-            <div class="timelineTemp"></div>
-            <div class="humidity"></div>
-          </div>
-          <div class="icon"></div>
-        </div>
+      <div class="flexSizingDiv"></div>
     </div>
-  </div>
-</body>
+  </body>
 </html>
