@@ -62,6 +62,7 @@ async function populateDataInWeatherDiv(dataList) {
   console.log(dayObject);
   const chosenDayInfo = await populateChosenDiv(dayObject);
   weatherDiv.appendChild(chosenDayInfo);
+
 }
 
 async function populateChosenDiv(dayObject) {
@@ -165,7 +166,7 @@ async function populateChosenDiv(dayObject) {
 
   const metricHumidity = document.createElement("p");
   metricHumidity.classList.add("metric");
-  metricHumidity.textContent = dayObject.humidity;
+  metricHumidity.textContent = `${dayObject.humidity}%`;
   chosenDayMetricContainerHumidity.appendChild(metricHumidity);
 
   chosenDayMetrics.appendChild(chosenDayMetricContainerHumidity);
