@@ -1,17 +1,15 @@
 //Function to Control the Weather-API, returns the object for displaying the weather
 
-async function getWeatherObject(chosenCity) {
+async function getWeatherObjectFromAPI(chosenCity) {
   try {
     const currWeatherResponse = await fetch(
-      `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${chosenCity}?key=JGPVJ3TGWWGEJ3LPNP2H2CKEM`
+      `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${chosenCity}?unitGroup=metric&key=JGPVJ3TGWWGEJ3LPNP2H2CKEM`
     );
     const currWeatherObject = await currWeatherResponse.json();
     return currWeatherObject;
   } catch (error) {
-    console.log(error);
+    throw new Error(`Failed to query API, Error: ${error}`);
   }
 }
 
-const weatherAPIController = { getWeatherObject };
-
-export { weatherAPIController };
+export { getWeatherObjectFromAPI };

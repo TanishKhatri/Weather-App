@@ -13,7 +13,7 @@
   </head>
   <body>
     <div class="projectContainer">
-      <div class="searchContainer">
+      <form class="searchContainer" novalidate>
         <input
           type="search"
           autocorrect="off"
@@ -21,12 +21,13 @@
           class="searchInput"
           id="searchInput"
           placeholder="Search Your City"
+          required
         />
         <button class="searchButton">Search</button>
         <div class="loadingIcon"></div>
-      </div>
+      </form>
       <div class="weatherDiv">
-        <div class="chosenDayInfo">
+        <!-- <div class="chosenDayInfo">
           <div class="dayAndIcon">
             <div class="chosenDayDate">
               <h1 class="dateAndDay">
@@ -75,7 +76,7 @@
                   class="umbrella"
                 />
               </div>
-              <div class="metric">13.5%</div>
+              <div class="metric">13.6mm</div>
             </div>
             <div class="chosenDayMetricContainer Wind">
               <p class="metricTitle">Wind Speed</p>
@@ -178,7 +179,7 @@
             </div>
             <div class="timelineTemp">16&deg;C</div>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </body>
