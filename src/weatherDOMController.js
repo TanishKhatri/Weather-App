@@ -3,6 +3,7 @@
 import { format } from "date-fns";
 import { getWeatherObjectFromAPI } from "./weatherAPIController.js";
 import { factoryFunctionForWeekWeatherList } from "./weatherObjectMaker";
+import { te } from "date-fns/locale";
 
 async function getWeatherData(cityName) {
   try {
@@ -83,7 +84,7 @@ async function populateDataInWeatherDiv(dataList) {
     timelineDiv.appendChild(timelineIconDiv);
 
     const timelineTemp = document.createElement("div");
-    timelineTemp.classList.add("timelineTemp");
+    timelineTemp.classList.add("timelineTemp", "tempSelection", "celsius");
     timelineTemp.textContent = `${day.temp}\u00B0 C`;
     timelineDiv.appendChild(timelineTemp);
     dayTimeline.appendChild(timelineDiv);
@@ -144,6 +145,26 @@ async function populateChosenDiv(dayObject) {
   const temperatureSelector = document.createElement("button");
   temperatureSelector.classList.add("temperatureSelector");
   temperatureSelector.textContent = "F";
+
+  //Temperature Selector Event Listener
+  temperatureSelector.addEventListener("click", () => {
+    const tempSelectionAll = document.querySelectorAll(".tempSelection");
+    tempSelectionAll.forEach((tempDiv) => {
+      const temperature = Number.parseFloat(tempDiv.textContent);
+      if (tempDiv.classList.contains("celsius")) {
+        const newTemperature = (temperature*9/5) + 32;
+        tempDiv.textContent = `${newTemperature.toFixed(1)}\u00B0 F`;
+        tempDiv.classList.remove("celsius");
+        tempDiv.classList.add("fahrenheit");
+      } else {
+        const newTemperature = (temperature-32)*5/9;
+        tempDiv.textContent = `${newTemperature.toFixed(1)}\u00B0 C`;
+        tempDiv.classList.remove("fahrenheit");
+        tempDiv.classList.add("celsius");
+      }
+    });
+  });
+
   rightSideFlexContainer.appendChild(temperatureSelector);
 
   dayAndIcon.appendChild(rightSideFlexContainer);
@@ -175,7 +196,7 @@ async function populateChosenDiv(dayObject) {
   chosenDayMetricContainerTemp.appendChild(metricIconContainerTemp);
 
   const metricTemp = document.createElement("p");
-  metricTemp.classList.add("metric");
+  metricTemp.classList.add("metric", "tempSelection", "celsius");
   metricTemp.textContent = `${dayObject.temp.toFixed(1)}\u00B0 C`; //\u00B0 is the symbol for degree
 
   chosenDayMetricContainerTemp.appendChild(metricTemp);
@@ -299,8 +320,6 @@ async function populateChosenDiv(dayObject) {
 
   return chosenDayInfo;
 }
-
-function changeTemperatureEventListener() {}
 
 function degreesToDirection(deg) {
   const directions = ["N", "NE", "E", "SE", "S", "SW", "W", "NW"];
