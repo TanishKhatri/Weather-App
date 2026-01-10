@@ -163,7 +163,7 @@ async function populateChosenDiv(dayObject) {
 
   const temperatureSelector = document.createElement("button");
   temperatureSelector.classList.add("temperatureSelector");
-  temperatureSelector.textContent = "F";
+  temperatureSelector.textContent = "C";
 
   //Temperature Selector Event Listener
   temperatureSelector.addEventListener("click", () => {
@@ -175,11 +175,13 @@ async function populateChosenDiv(dayObject) {
         tempDiv.textContent = `${newTemperature.toFixed(1)}\u00B0 F`;
         tempDiv.classList.remove("celsius");
         tempDiv.classList.add("fahrenheit");
+        temperatureSelector.textContent = "F";
       } else {
         const newTemperature = ((temperature - 32) * 5) / 9;
         tempDiv.textContent = `${newTemperature.toFixed(1)}\u00B0 C`;
         tempDiv.classList.remove("fahrenheit");
         tempDiv.classList.add("celsius");
+        temperatureSelector.textContent = "C";
       }
     });
   });
