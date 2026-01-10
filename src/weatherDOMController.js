@@ -84,15 +84,25 @@ async function populateDataInWeatherDiv(dataList) {
 
     const timelineTemp = document.createElement("div");
     timelineTemp.classList.add("timelineTemp");
-    timelineTemp.textContent = `${dayObject.temp}\u00B0 C`;
+    timelineTemp.textContent = `${day.temp}\u00B0 C`;
     timelineDiv.appendChild(timelineTemp);
     dayTimeline.appendChild(timelineDiv);
+
+    //Timeline Div Event Listeners
+    timelineDiv.addEventListener("click", async () => {
+      const newChosenDayInfo = await populateChosenDiv(day);
+      dayTimeline.before(newChosenDayInfo);
+    });
   };
 
   weatherDiv.appendChild(dayTimeline);
 }
 
 async function populateChosenDiv(dayObject) {
+  const checkIfDivAlreadyMade = document.querySelector(".chosenDayInfo");
+  if (checkIfDivAlreadyMade) {
+    checkIfDivAlreadyMade.remove();
+  }
   const chosenDayInfo = document.createElement("div");
   chosenDayInfo.classList.add("chosenDayInfo");
 
@@ -291,8 +301,6 @@ async function populateChosenDiv(dayObject) {
 }
 
 function changeTemperatureEventListener() {}
-
-function addEventListenersToTimeline() {}
 
 function degreesToDirection(deg) {
   const directions = ["N", "NE", "E", "SE", "S", "SW", "W", "NW"];
