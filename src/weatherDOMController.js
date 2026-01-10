@@ -28,16 +28,18 @@ function addEventListenersToSearch() {
       const errorText = document.querySelector(".errorText");
       const loadingIcon = document.querySelector(".loadingIcon");
       loadingIcon.classList.remove("hidden");
-      getWeatherData(cityName).then((list) => {
-        errorText.classList.add("hidden");
-        populateDataInWeatherDiv(list).then(() => {
+      getWeatherData(cityName)
+        .then((list) => {
+          errorText.classList.add("hidden");
+          populateDataInWeatherDiv(list).then(() => {
+            loadingIcon.classList.add("hidden");
+          });
+        })
+        .catch((error) => {
+          errorText.textContent = "Bad Query, Process Failed";
+          errorText.classList.remove("hidden");
           loadingIcon.classList.add("hidden");
         });
-      }).catch((error) => {
-        errorText.textContent = "Bad Query, Process Failed";
-        errorText.classList.remove("hidden");
-        loadingIcon.classList.add("hidden");
-      });
     }
   });
 }
@@ -73,12 +75,10 @@ async function populateDataInWeatherDiv(dataList) {
   const dayTimeline = document.createElement("div");
   dayTimeline.classList.add("dayTimeline");
 
-  console.log(dataList);
-
   for (const day of dataList) {
     const timelineDiv = document.createElement("div");
     timelineDiv.classList.add("timelineDiv");
-    
+
     const timelineDay = document.createElement("p");
     timelineDay.classList.add("timelineDay");
     timelineDay.textContent = format(day.date, "d MMM");
@@ -89,7 +89,9 @@ async function populateDataInWeatherDiv(dataList) {
 
     const timelineIcon = document.createElement("img");
     timelineIcon.classList.add("timelineIcon");
-    const timelineIconSVG = await import(`./assets/WeatherIcons/SVG/4th Set - Color/${day.icon}.svg`);
+    const timelineIconSVG = await import(
+      `./assets/WeatherIcons/SVG/4th Set - Color/${day.icon}.svg`
+    );
     timelineIcon.src = timelineIconSVG.default;
 
     timelineIconDiv.appendChild(timelineIcon);
@@ -107,7 +109,7 @@ async function populateDataInWeatherDiv(dataList) {
       const newChosenDayInfo = await populateChosenDiv(day);
       dayTimeline.before(newChosenDayInfo);
     });
-  };
+  }
 
   weatherDiv.appendChild(dayTimeline);
 }
@@ -151,7 +153,6 @@ async function populateChosenDiv(dayObject) {
 
   const weatherImage = document.createElement("img");
   weatherImage.classList.add("weatherImage");
-  console.log(dayObject.icon);
   const weatherImageIcon = await import(
     `./assets/WeatherIcons/SVG/4th Set - Color/${dayObject.icon}.svg`
   );
@@ -170,12 +171,12 @@ async function populateChosenDiv(dayObject) {
     tempSelectionAll.forEach((tempDiv) => {
       const temperature = Number.parseFloat(tempDiv.textContent);
       if (tempDiv.classList.contains("celsius")) {
-        const newTemperature = (temperature*9/5) + 32;
+        const newTemperature = (temperature * 9) / 5 + 32;
         tempDiv.textContent = `${newTemperature.toFixed(1)}\u00B0 F`;
         tempDiv.classList.remove("celsius");
         tempDiv.classList.add("fahrenheit");
       } else {
-        const newTemperature = (temperature-32)*5/9;
+        const newTemperature = ((temperature - 32) * 5) / 9;
         tempDiv.textContent = `${newTemperature.toFixed(1)}\u00B0 C`;
         tempDiv.classList.remove("fahrenheit");
         tempDiv.classList.add("celsius");
@@ -347,7 +348,7 @@ function degreesToDirection(deg) {
 function capitalize(str = "") {
   return str
     .split(" ")
-    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(" ");
 }
 
