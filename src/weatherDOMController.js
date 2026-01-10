@@ -10,7 +10,7 @@ async function getWeatherData(cityName) {
     let cityWeather = await getWeatherObjectFromAPI(cityName);
     return factoryFunctionForWeekWeatherList(cityWeather);
   } catch (errorMessage) {
-    console.log(errorMessage);
+    throw new Error(errorMessage);
   }
 }
 
@@ -23,10 +23,22 @@ function addEventListenersToSearch() {
   });
 
   searchButton.addEventListener("click", () => {
-    const cityName = searchInput.value;
-    getWeatherData(cityName).then((obj) => {
-      console.log(obj);
-    });
+    if (searchInput.checkValidity()) {
+      const cityName = searchInput.value;
+      const errorText = document.querySelector(".errorText");
+      const loadingIcon = document.querySelector(".loadingIcon");
+      loadingIcon.classList.remove("hidden");
+      getWeatherData(cityName).then((list) => {
+        errorText.classList.add("hidden");
+        populateDataInWeatherDiv(list).then(() => {
+          loadingIcon.classList.add("hidden");
+        });
+      }).catch((error) => {
+        errorText.textContent = "Bad Query, Process Failed";
+        errorText.classList.remove("hidden");
+        loadingIcon.classList.add("hidden");
+      });
+    }
   });
 }
 
@@ -52,6 +64,7 @@ addEventListenersToSearch();
  */
 async function populateDataInWeatherDiv(dataList) {
   const weatherDiv = document.querySelector("div.weatherDiv");
+  weatherDiv.innerHTML = `<div class="errorText hidden"></div>`;
   const dayObject = dataList[0];
   const chosenDayInfo = await populateChosenDiv(dayObject);
   weatherDiv.appendChild(chosenDayInfo);
@@ -122,6 +135,11 @@ async function populateChosenDiv(dayObject) {
   dayDescription.classList.add("dayDescription");
   dayDescription.textContent = dayObject.description;
   chosenDayDate.appendChild(dayDescription);
+
+  const dayCity = document.createElement("div");
+  dayCity.classList.add("dayCity");
+  dayCity.textContent = capitalize(dayObject.resolvedAddress);
+  chosenDayDate.appendChild(dayCity);
 
   dayAndIcon.appendChild(chosenDayDate);
 
@@ -326,8 +344,11 @@ function degreesToDirection(deg) {
   return directions[Math.round(deg / 45) % 8];
 }
 
-getWeatherData("Delhi").then((list) => {
-  populateDataInWeatherDiv(list);
-});
+function capitalize(str = "") {
+  return str
+    .split(" ")
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+}
 
 export const weatherDomController = {};

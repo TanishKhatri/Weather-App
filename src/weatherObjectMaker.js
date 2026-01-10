@@ -15,6 +15,7 @@ function factoryFunctionForWeekWeatherList(dataFromAPI) {
     dayObject.description = dataFromAPI.days[i].description;
     dayObject.icon = dataFromAPI.days[i].icon;
     dayObject.windSpeed = dataFromAPI.days[i].windspeed;
+    dayObject.resolvedAddress = dataFromAPI.resolvedAddress;
     daysList.push(dayObject);
   }
   return daysList;
