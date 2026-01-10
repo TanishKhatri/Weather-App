@@ -176,7 +176,7 @@ async function populateChosenDiv(dayObject) {
 
   const metricTemp = document.createElement("p");
   metricTemp.classList.add("metric");
-  metricTemp.textContent = `${dayObject.temp}\u00B0 C`; //\u00B0 is the symbol for degree
+  metricTemp.textContent = `${dayObject.temp.toFixed(1)}\u00B0 C`; //\u00B0 is the symbol for degree
 
   chosenDayMetricContainerTemp.appendChild(metricTemp);
 
@@ -203,7 +203,7 @@ async function populateChosenDiv(dayObject) {
 
   const metricHumidity = document.createElement("p");
   metricHumidity.classList.add("metric");
-  metricHumidity.textContent = `${dayObject.humidity}%`;
+  metricHumidity.textContent = `${dayObject.humidity.toFixed(1)}%`;
   chosenDayMetricContainerHumidity.appendChild(metricHumidity);
 
   chosenDayMetrics.appendChild(chosenDayMetricContainerHumidity);
@@ -235,7 +235,7 @@ async function populateChosenDiv(dayObject) {
 
   const metricPrecipitation = document.createElement("p");
   metricPrecipitation.classList.add("metric");
-  metricPrecipitation.textContent = `${dayObject.precipitation}mm`;
+  metricPrecipitation.textContent = `${dayObject.precipitation.toFixed(1)}mm`;
   chosenDayMetricContainerPrecipitation.appendChild(metricPrecipitation);
 
   chosenDayMetrics.appendChild(chosenDayMetricContainerPrecipitation);
@@ -266,7 +266,7 @@ async function populateChosenDiv(dayObject) {
 
   const metricWindSpeed = document.createElement("p");
   metricWindSpeed.classList.add("metric");
-  metricWindSpeed.textContent = `${dayObject.windSpeed}km/h`;
+  metricWindSpeed.textContent = `${dayObject.windSpeed.toFixed(1)}km/h`;
   chosenDayMetricContainerWind.appendChild(metricWindSpeed);
 
   const windDirectionContainer = document.createElement("div");
