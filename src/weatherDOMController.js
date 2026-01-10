@@ -4,13 +4,6 @@ import { format } from "date-fns";
 import { getWeatherObjectFromAPI } from "./weatherAPIController.js";
 import { factoryFunctionForWeekWeatherList } from "./weatherObjectMaker";
 
-// let delhiWeather = null;
-// weatherAPIController.getWeatherObject("delhi").then((obj) =>
-// {
-//   console.log(obj);
-//   console.log(factoryFunctionForWeekWeatherList(obj));
-// });
-
 async function getWeatherData(cityName) {
   try {
     let cityWeather = await getWeatherObjectFromAPI(cityName);
@@ -59,10 +52,44 @@ addEventListenersToSearch();
 async function populateDataInWeatherDiv(dataList) {
   const weatherDiv = document.querySelector("div.weatherDiv");
   const dayObject = dataList[0];
-  console.log(dayObject);
   const chosenDayInfo = await populateChosenDiv(dayObject);
   weatherDiv.appendChild(chosenDayInfo);
 
+  //Populating Timeline
+  const dayTimeline = document.createElement("div");
+  dayTimeline.classList.add("dayTimeline");
+
+  console.log(dataList);
+
+  for (const day of dataList) {
+    const timelineDiv = document.createElement("div");
+    timelineDiv.classList.add("timelineDiv");
+    
+    const timelineDay = document.createElement("p");
+    timelineDay.classList.add("timelineDay");
+    timelineDay.textContent = format(day.date, "d MMM");
+    timelineDiv.appendChild(timelineDay);
+
+    const timelineIconDiv = document.createElement("div");
+    timelineIconDiv.classList.add("timelineIconDiv");
+
+    const timelineIcon = document.createElement("img");
+    timelineIcon.classList.add("timelineIcon");
+    const timelineIconSVG = await import(`./assets/WeatherIcons/SVG/4th Set - Color/${day.icon}.svg`);
+    timelineIcon.src = timelineIconSVG.default;
+
+    timelineIconDiv.appendChild(timelineIcon);
+
+    timelineDiv.appendChild(timelineIconDiv);
+
+    const timelineTemp = document.createElement("div");
+    timelineTemp.classList.add("timelineTemp");
+    timelineTemp.textContent = `${dayObject.temp}\u00B0 C`;
+    timelineDiv.appendChild(timelineTemp);
+    dayTimeline.appendChild(timelineDiv);
+  };
+
+  weatherDiv.appendChild(dayTimeline);
 }
 
 async function populateChosenDiv(dayObject) {
